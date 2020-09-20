@@ -48,7 +48,7 @@ jobs:
         with:
           name: sweeper-osx
           path: |
-            dist/CrownSweeper
+            dist/*
             CrownSweeper.spec
           
           
@@ -60,12 +60,19 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build
-        run: ./run.sh
-      
+        run: |
+          pip3 install virtualenv
+          mkdir venv
+          python3 -m virtualenv venv
+          source venv\Scripts\activate.bat
+          pip3 install -r requirements.txt
+          pyinstaller --onefile --windowed -i sweeper.ico -n CrownSweeper sweeper.py 
+          dir dist
+
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: sweeper-windows
           path: |
-            dist/CrownSweepersweeper-windows.zip
+            dist\*
             CrownSweeper.spec
