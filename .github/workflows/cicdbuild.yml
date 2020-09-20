@@ -18,6 +18,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          apt-cache policy fontconfig 
           python -m pip install --upgrade pip
 
       - name: Build
