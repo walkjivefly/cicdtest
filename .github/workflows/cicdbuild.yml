@@ -28,4 +28,44 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: sweeper-linux
-          path: dist/CrownSweeper
+          path: |
+            dist/CrownSweeper
+            CrownSweeper.spec
+
+
+  osx-build:
+    name: Build OSX Asset
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build
+        run: ./run.sh
+      
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: sweeper-osx
+          path: |
+            dist/CrownSweeper
+            CrownSweeper.spec
+          
+          
+  windows-build:
+    name: Build Windows Asset
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build
+        run: ./run.sh
+      
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: sweeper-windows
+          path: |
+            dist/CrownSweepersweeper-windows.zip
+            CrownSweeper.spec
