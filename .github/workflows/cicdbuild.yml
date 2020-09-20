@@ -1,0 +1,44 @@
+name: CI/CD Build
+
+on:
+  push:
+  
+jobs:
+  osx-build:
+    name: Build OSX Asset
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build
+        run: ./run.sh
+      
+      - name: Package Files for upload
+        run: zip -r sweeper-osx.zip dist
+
+  linux-build:
+    name: Build Linux Asset
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build
+        run: ./run.sh
+      
+      - name: Package Files for upload
+        run: zip -r sweeper-osx.zip dist
+
+  windows-build:
+    name: Build Windows Asset
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build
+        run: ./run.sh
+      
+      - name: Package Files for upload
+        run: zip -r sweeper-osx.zip dist
