@@ -75,7 +75,7 @@ jobs:
           pip install virtualenv
           mkdir venv
           python.exe -m virtualenv venv
-          source venv\Scripts\activate.bat
+          .\venv\Scripts\activate.bat
           pip3 install -r requirements.txt
           pyinstaller --onefile --windowed -i sweeper.ico -n CrownSweeper sweeper.py 
           dir dist
