@@ -1,62 +1,30 @@
 name: Build
 
-on:
-  push:
+on: [push]
   
 jobs:
-  osx-build:
-    name: Build OSX Asset
-    runs-on: macos-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Build
-        run: ./run.sh
-      
-      - name: Package Files for upload
-        run: zip -r sweeper-osx.zip dist
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: osx
-          path: sweeper-osx.zip
-          
   linux-build:
     name: Build Linux Asset
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-16.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Build
-        run: ./run.sh
-      
-      - name: Package Files for upload
-        run: zip -r sweeper-linux.zip dist
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
         with:
-          name: linux
-          path: sweeper-linux.zip
-          
-  windows-build:
-    name: Build Windows Asset
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+          python-version: '3.6'
+          architecture: 'x64'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
 
       - name: Build
         run: ./run.sh
       
-      - name: Package Files for upload
-        run: zip -r sweeper-windows.zip dist
-
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: winbloze
-          path: sweeper-windows.zip
+          name: sweeper-linux
+          path: dist/CrownSweeper
