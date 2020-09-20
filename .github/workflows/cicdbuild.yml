@@ -17,12 +17,11 @@ jobs:
       - name: Package Files for upload
         run: zip -r sweeper-osx.zip dist
 
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
         with:
-          files: crown-osx.zip
+          name: osx
+          path: sweeper-osx.zip
           
   linux-build:
     name: Build Linux Asset
@@ -37,12 +36,11 @@ jobs:
       - name: Package Files for upload
         run: zip -r sweeper-linux.zip dist
 
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
         with:
-          files: crown-osx.zip
+          name: linux
+          path: sweeper-linux.zip
           
   windows-build:
     name: Build Windows Asset
@@ -57,10 +55,8 @@ jobs:
       - name: Package Files for upload
         run: zip -r sweeper-windows.zip dist
 
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
         with:
-          files: crown-osx.zip
-          
+          name: winbloze
+          path: sweeper-windows.zip
