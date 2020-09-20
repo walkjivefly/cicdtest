@@ -13,7 +13,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.6'
+          python-version: '3.7'
           architecture: 'x64'
 
       - name: Install dependencies
@@ -40,6 +40,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.7'
+
       - name: Build
         run: ./run.sh
       
@@ -59,11 +64,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.7'
+
       - name: Build
         run: |
-          pip3 install virtualenv
+          python.exe -m pip install --upgrade pip
+          pip install virtualenv
           mkdir venv
-          python3 -m virtualenv venv
+          python.exe -m virtualenv venv
           source venv\Scripts\activate.bat
           pip3 install -r requirements.txt
           pyinstaller --onefile --windowed -i sweeper.ico -n CrownSweeper sweeper.py 
