@@ -28,7 +28,7 @@ jobs:
         run: ./run.sh
       
       - name: Package Files for upload
-        run: zip -r sweeper-osx.zip dist
+        run: zip -r sweeper-linux.zip dist
 
   windows-build:
     name: Build Windows Asset
@@ -41,4 +41,4 @@ jobs:
         run: ./run.sh
       
       - name: Package Files for upload
-        run: zip -r sweeper-osx.zip dist
+        run: zip -r sweeper-windows.zip dist
