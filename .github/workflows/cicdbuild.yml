@@ -22,8 +22,9 @@ jobs:
           python -m pip install --upgrade pip
 
       - name: Build
-        run: ./run.sh
-             ls -lR dist
+        run: |
+          ./run.sh
+          ls -lR dist
       
       - name: Upload artifact
         uses: actions/upload-artifact@v2
@@ -46,8 +47,9 @@ jobs:
           python-version: '3.7'
 
       - name: Build
-        run: ./run.sh
-             ls -lR dist
+        run: |
+          ./run.sh
+          ls -lR dist
       
       - name: Upload artifact
         uses: actions/upload-artifact@v2
