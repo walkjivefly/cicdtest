@@ -25,13 +25,16 @@ jobs:
         run: |
           ./run.sh
           ls -lR dist
+
+      - name: 'tar kludge to preserve permissions'
+        run: tar -cvf sweeper-linux.tar dist/CrownSweeper
       
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: sweeper-linux
           path: |
-            dist/CrownSweeper
+            sweeper-linux.tar
 
 
   osx-build:
@@ -50,13 +53,16 @@ jobs:
         run: |
           ./run.sh
           ls -lR dist
+
+      - name: 'tar kludge to preserve permissions'
+        run: tar -cvf sweeper-osx.tar dist/CrownSweeper
       
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: sweeper-osx
           path: |
-            dist/*
+            sweeper-osx.tar
           
           
   windows-build:
