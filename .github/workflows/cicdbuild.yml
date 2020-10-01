@@ -22,19 +22,16 @@ jobs:
           python -m pip install --upgrade pip
 
       - name: Build
-        run: |
-          ./run.sh
-          ls -lR dist
-
-      - name: 'tar kludge to preserve permissions'
-        run: tar -cvf sweeper-linux.tar dist/CrownSweeper
+        run: ./run.sh
       
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: sweeper-linux
           path: |
-            sweeper-linux.tar
+            README.md
+            LICENSE
+            dist/CrownSweeper
 
 
   osx-build:
@@ -50,19 +47,16 @@ jobs:
           python-version: '3.7'
 
       - name: Build
-        run: |
-          ./run.sh
-          ls -lR dist
-
-      - name: 'tar kludge to preserve permissions'
-        run: tar -cvf sweeper-osx.tar dist/CrownSweeper
+        run: ./run.sh
       
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: sweeper-osx
           path: |
-            sweeper-osx.tar
+            README.md
+            LICENSE
+            dist/CrownSweeper
           
           
   windows-build:
@@ -85,11 +79,13 @@ jobs:
           python.exe -m virtualenv venv
           .\venv\Scripts\activate.bat
           pip3 install -r requirements.txt
-          pyinstaller --onefile -i sweeper.ico -n CrownSweeper sweeper.py 
+          pyinstaller --windowed CrownSweeper.spec
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: sweeper-windows
           path: |
-            dist\*
+            README.md
+            LICENSE
+            dist\CrownSweeper.exe
